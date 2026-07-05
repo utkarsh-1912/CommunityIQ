@@ -458,7 +458,7 @@ export default function Overview({
         <div className="ticker-wrap">
           <span className="ticker-tag">ALERT</span>
           <span className="ticker-scroll">
-            ⚠ INCIDENT LEVEL 3 — Coastal flood risk elevated in {city?.name}.
+            INCIDENT LEVEL 3 — Coastal flood risk elevated in {city?.name}.
             Open-Meteo precipitation: {weather?.totalPrecip24h?.toFixed(1) ?? '—'}mm expected in 24h.
             Emergency protocols active — all responders on standby.
           </span>

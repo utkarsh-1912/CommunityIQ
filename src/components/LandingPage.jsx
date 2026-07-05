@@ -121,13 +121,16 @@ export default function LandingPage({
         </p>
 
         {/* Action pillars */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-          gap: '16px',
-          width: '100%',
-          marginBottom: '40px'
-        }}>
+        <div
+          className="landing-feature-grid"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+            gap: '16px',
+            width: '100%',
+            marginBottom: '40px'
+          }}
+        >
           <div style={{
             background: 'rgba(255,255,255,0.01)',
             border: '1px solid rgba(255,255,255,0.04)',
@@ -180,11 +183,14 @@ export default function LandingPage({
             Select Telemetry City Context
           </div>
           
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: '8px'
-          }}>
+          <div
+            className="landing-city-grid"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(4, 1fr)',
+              gap: '8px'
+            }}
+          >
             {/* Render onboarded cities */}
             {Object.values(cities).map(c => (
               <button

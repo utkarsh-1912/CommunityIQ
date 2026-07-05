@@ -757,7 +757,8 @@ export default function App() {
       case 'emergency':
         return (
           <div className="grid-2-rev fade-in" style={{ height: 'calc(100vh - 58px - 44px)' }}>
-            <EmergencyAgent {...{ emergency, triggerEmergency, emiStep, mitigations, triggerMitigations, weather, wards, city }}/>
+            <EmergencyAgent {...{ emergency, triggerEmergency, emiStep, mitigations, triggerMitigations, weather, wards, city, sim }}/>
+
             <DigitalTwinMap {...mapProps} city={city} layer="flood" settings={settings}/>
           </div>
         );

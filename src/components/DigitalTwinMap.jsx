@@ -78,30 +78,54 @@ export default function DigitalTwinMap({
     });
   }, []);
 
-  // Initialize Map
+  // Initialize Map — guarded by ResizeObserver so container must have non-zero dimensions
   useEffect(() => {
     if (!libLoaded || !mapContainerRef.current) return;
-
     const L = window.L;
     if (!L) return;
 
-    // Create map centered on active city
-    const map = L.map(mapContainerRef.current, {
-      center: [city.lat, city.lon],
-      zoom: 12,
-      zoomControl: false,
-      attributionControl: false,
+    // If already initialized, just pan to new city
+    if (mapRef.current) {
+      mapRef.current.setView([city.lat, city.lon], 12);
+      return;
+    }
+
+    const container = mapContainerRef.current;
+
+    const initMap = () => {
+      if (mapRef.current) return; // already done
+      const { offsetWidth, offsetHeight } = container;
+      if (offsetWidth === 0 || offsetHeight === 0) return; // not visible yet
+
+      const map = L.map(container, {
+        center: [city.lat, city.lon],
+        zoom: 12,
+        zoomControl: false,
+        attributionControl: false,
+      });
+
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        maxZoom: 19,
+      }).addTo(map);
+
+      mapRef.current = map;
+
+      // Force a size recalculation after paint
+      requestAnimationFrame(() => map.invalidateSize());
+    };
+
+    // Try immediately
+    initMap();
+
+    // Also watch for the container becoming visible (e.g., tab switch, mobile layout)
+    const ro = new ResizeObserver(() => {
+      if (!mapRef.current) initMap();
+      else mapRef.current.invalidateSize();
     });
-
-    // Dark tile layer
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      maxZoom: 19,
-    }).addTo(map);
-
-    // Save map reference
-    mapRef.current = map;
+    ro.observe(container);
 
     return () => {
+      ro.disconnect();
       if (mapRef.current) {
         mapRef.current.remove();
         mapRef.current = null;
