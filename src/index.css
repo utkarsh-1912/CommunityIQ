@@ -296,7 +296,7 @@ button { font-family: inherit; }
 .grid-2 { display: grid; grid-template-columns: 1fr 380px; gap: 18px; height: 100%; min-height: 0; }
 .grid-2-rev { display: grid; grid-template-columns: 380px 1fr; gap: 18px; height: 100%; min-height: 0; }
 .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
-.col    { display: flex; flex-direction: column; gap: 16px; min-height: 0; }
+.col    { display: flex; flex-direction: column; gap: 16px; min-height: 0; overflow-y: auto; overflow-x: hidden; padding-right: 4px; }
 
 /* ─── Overview bottom grid ───────────────────────────────── */
 .overview-bottom { display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px; }
@@ -1967,11 +1967,28 @@ input[type=range]::-webkit-slider-thumb {
 
   /* Page padding */
   .page-wrap { padding: 14px 12px !important; }
+  /* Grids to single column on mobile */
+  .grid-3, .grid-2, .grid-2-rev, .overview-bottom, .metric-pair {
+    grid-template-columns: 1fr !important;
+    height: auto !important;
+  }
+  .col {
+    overflow-y: visible !important;
+    padding-right: 0 !important;
+  }
 
-  /* Grids to single column */
-  .grid-3, .grid-2 { grid-template-columns: 1fr !important; }
+  /* Collapse inline-styled grids by default, excluding specific multi-column zones */
+  div[style*="grid-template-columns"]:not(.landing-city-grid):not(.landing-feature-grid):not(.infra-summary-strip):not(.sustainability-hero-stats):not(.utility-summary-grid),
+  div[style*="gridTemplateColumns"]:not(.landing-city-grid):not(.landing-feature-grid):not(.infra-summary-strip):not(.sustainability-hero-stats):not(.utility-summary-grid) {
+    grid-template-columns: 1fr !important;
+  }
 
-  /* Landing page hero wraps vertically */
+  /* Custom overrides for dashboard stats */
+  .stat-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Landing page overrides */
   .landing-hero-grid { flex-direction: column !important; }
   .landing-feature-grid { grid-template-columns: 1fr 1fr !important; }
   .landing-city-grid { grid-template-columns: repeat(3, 1fr) !important; }
@@ -1987,4 +2004,6 @@ input[type=range]::-webkit-slider-thumb {
   .stat-card { padding: 12px 14px !important; }
   .landing-feature-grid { grid-template-columns: 1fr !important; }
   .panel { border-radius: 10px !important; }
+  .stat-grid { grid-template-columns: 1fr !important; }
+  .infra-summary-strip { grid-template-columns: repeat(2, 1fr) !important; }
 }

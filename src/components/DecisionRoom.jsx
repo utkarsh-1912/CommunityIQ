@@ -535,7 +535,7 @@ export default function DecisionRoom({ city }) {
   );
 
   return (
-    <div className="fade-in" style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '20px', height: '100%', overflowY: 'auto' }}>
+    <div className="fade-in" style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '20px', height: 'auto', overflowY: 'visible' }}>
       
       {/* ── Page Header ── */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

@@ -287,7 +287,7 @@ export default function Sustainability({ sim, wards, weather, sustainabilityScor
             <div style={{ fontSize: 13, color: 'var(--fg)', lineHeight: 1.5, marginBottom: 12 }}>
               Composite score based on transit efficiency, grid optimization & AQI impact.
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px 16px' }}>
+            <div className="sustainability-hero-stats" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px 16px' }}>
               {[
                 { label: 'CO₂ Reduced', value: `${co2Saved}t`, color: 'var(--green)' },
                 { label: 'Tree Equiv.', value: `${treeEq}`, color: 'var(--teal)' },
@@ -461,7 +461,7 @@ export default function Sustainability({ sim, wards, weather, sustainabilityScor
             <span style={{ fontSize: 10, color: 'var(--fg-muted)' }}>Live</span>
           </div>
           <div className="panel-body" style={{ padding: '12px 16px' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+            <div className="utility-summary-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
               {[
                 { label: 'Avg Grid Load',    value: `${avgElec}%`,  color: avgElec > 80 ? 'var(--rose)' : 'var(--indigo)', icon: '⚡' },
                 { label: 'Avg AQI',          value: `${avgAqi}`,    color: aqiColor(avgAqi), icon: '💨' },

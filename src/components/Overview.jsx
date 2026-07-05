@@ -515,7 +515,7 @@ export default function Overview({
           </div>
           <div className="panel-body">
             {/* City infrastructure summary strip */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 8, marginBottom: 16, padding: '10px', background: 'rgba(255,255,255,.015)', borderRadius: 8, border: '1px solid var(--border)' }}>
+            <div className="infra-summary-strip" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 8, marginBottom: 16, padding: '10px', background: 'rgba(255,255,255,.015)', borderRadius: 8, border: '1px solid var(--border)' }}>
               {[
                 { icon: <HeartPulse size={11} color="var(--rose)"/>, val: totalHospitals,         label: 'Hospitals' },
                 { icon: <GraduationCap size={11} color="#a78bfa"/>,  val: totalSchools,            label: 'Schools' },

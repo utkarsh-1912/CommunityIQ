@@ -4,7 +4,7 @@ import { Info, ShieldAlert, Cpu, Database, Brain, Globe, HelpCircle } from 'luci
 export default function AboutPage({ city, view = 'about' }) {
   if (view === 'privacy') {
     return (
-      <div className="fade-in" style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '24px', height: '100%', overflowY: 'auto' }}>
+      <div className="fade-in" style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '24px', height: 'auto', overflowY: 'visible' }}>
         {/* Page Header */}
         <div>
           <h2 style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: 0, fontSize: '18px', fontWeight: 800 }}>
@@ -55,7 +55,7 @@ export default function AboutPage({ city, view = 'about' }) {
 
   // Default 'about' view
   return (
-    <div className="fade-in" style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '24px', height: '100%', overflowY: 'auto' }}>
+    <div className="fade-in" style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '24px', height: 'auto', overflowY: 'visible' }}>
       {/* Page Header */}
       <div>
         <h2 style={{ display: 'flex', alignItems: 'center', gap: '8px', margin: 0, fontSize: '18px', fontWeight: 800 }}>

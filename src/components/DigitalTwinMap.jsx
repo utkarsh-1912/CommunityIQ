@@ -46,6 +46,8 @@ export default function DigitalTwinMap({
   const [expanded, setExpanded] = useState(false);
   const [selectedBusRoute, setSelectedBusRoute] = useState(null);
   const busRouteLineRef = useRef(null);
+  const [mapWidth, setMapWidth] = useState(0);
+  const [mapHeight, setMapHeight] = useState(0);
 
   const toggleExpand = () => {
     setExpanded(prev => !prev);
@@ -118,7 +120,12 @@ export default function DigitalTwinMap({
     initMap();
 
     // Also watch for the container becoming visible (e.g., tab switch, mobile layout)
-    const ro = new ResizeObserver(() => {
+    const ro = new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        const { width, height } = entry.contentRect;
+        setMapWidth(width);
+        setMapHeight(height);
+      }
       if (!mapRef.current) initMap();
       else mapRef.current.invalidateSize();
     });
@@ -135,7 +142,7 @@ export default function DigitalTwinMap({
 
   // Update Markers & Heatmaps
   useEffect(() => {
-    if (!libLoaded || !mapRef.current) return;
+    if (!libLoaded || !mapRef.current || mapWidth === 0 || mapHeight === 0) return;
 
     const L = window.L;
     const map = mapRef.current;
@@ -254,7 +261,7 @@ export default function DigitalTwinMap({
       }
     }
 
-  }, [libLoaded, wards, layer, ward, settings?.showHospitals]); // Re-draw markers when wards state, layer, or selected ward changes
+  }, [libLoaded, wards, layer, ward, settings?.showHospitals, mapWidth, mapHeight]); // Re-draw markers when wards state, layer, selected ward, or size changes
 
   // Evacuation visual effect when emergency is active
   useEffect(() => {
