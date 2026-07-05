@@ -975,7 +975,7 @@ export default function App() {
         <nav className="sidebar-nav">
           <div className="nav-section-label">Navigation</div>
           {ALL_NAV.filter(n => allowedPages.includes(n.id)).map(n => (
-            <button key={n.id} className={`nav-item ${safePage === n.id ? 'active' : ''}`} onClick={() => setPage(n.id)}>
+            <button key={n.id} className={`nav-item ${safePage === n.id ? 'active' : ''}`} onClick={() => { setPage(n.id); closeSidebar(); }}>
               {n.icon}
               {n.label}
               {n.alert && <span className="nav-badge">!</span>}
