@@ -1844,4 +1844,102 @@ input[type=range]::-webkit-slider-thumb {
   animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
+/* ─── Mobile Hamburger Button ────────────────────────────── */
+.sidebar-toggle-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.04);
+  color: var(--fg);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background .15s;
+}
+.sidebar-toggle-btn:hover { background: rgba(255,255,255,.08); }
 
+/* ─── Sidebar Overlay (mobile backdrop) ──────────────────── */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(2px);
+  z-index: 199;
+}
+@keyframes fade-in-fast { from { opacity:0 } to { opacity:1 } }
+
+/* ─── Mobile Close Button inside sidebar ─────────────────── */
+.sidebar-close-btn {
+  display: none;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.05);
+  color: var(--fg-muted);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 1;
+  transition: background .15s;
+}
+.sidebar-close-btn:hover { background: rgba(255,255,255,.1); color: var(--fg); }
+
+/* ─── Responsive Breakpoints ─────────────────────────────── */
+@media (max-width: 768px) {
+  /* Show hamburger in topbar */
+  .sidebar-toggle-btn { display: flex; }
+
+  /* Sidebar becomes a fixed overlay drawer */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 260px;
+    z-index: 200;
+    transform: translateX(-100%);
+    transition: transform .28s cubic-bezier(.4,0,.2,1);
+    box-shadow: 4px 0 40px rgba(0,0,0,.65);
+  }
+  .sidebar.open { transform: translateX(0); }
+
+  /* Show overlay backdrop when sidebar is open */
+  .sidebar-overlay.open { display: block; animation: fade-in-fast .2s ease both; }
+
+  /* Show close button inside sidebar header */
+  .sidebar.open .sidebar-close-btn { display: flex; }
+
+  /* sidebar-logo needs relative positioning for close button to anchor */
+  .sidebar-logo { position: relative; }
+
+  /* Content takes full viewport width */
+  .content { width: 100vw; }
+
+  /* Topbar adjustments */
+  .topbar { padding: 0 12px; gap: 8px; }
+  .topbar-title { font-size: 11px; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .topbar-right { gap: 6px; }
+
+  /* Page padding tighter */
+  .page-wrap { padding: 14px 12px; }
+
+  /* Grids squish to single column */
+  .grid-3 { grid-template-columns: 1fr !important; }
+  .grid-2 { grid-template-columns: 1fr !important; }
+}
+
+@media (max-width: 480px) {
+  .topbar-title { display: none; }
+  .page-wrap { padding: 10px 8px; }
+  .stat-card { padding: 12px 14px; }
+  .topbar { padding: 0 8px; }
+}

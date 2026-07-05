@@ -249,6 +249,10 @@ export default function App() {
   const [searchOpen,       setSearchOpen]       = useState(false);
   const [alertPanelOpen,   setAlertPanelOpen]   = useState(false);
   const [settingsPanelOpen, setSettingsPanelOpen] = useState(false);
+  const [sidebarOpen,      setSidebarOpen]      = useState(false);
+
+  // Close sidebar on any nav click on mobile
+  const closeSidebar = useCallback(() => setSidebarOpen(false), []);
 
   // ── Navigation ─────────────────────────────────────────────────────────────
   const [page,   setPage]   = useState('overview');
@@ -839,14 +843,24 @@ export default function App() {
         />
       )}
 
+      {/* ── Sidebar Overlay ──────────────────────────────────────────────── */}
+      <div
+        className={`sidebar-overlay ${sidebarOpen ? 'open' : ''}`}
+        onClick={closeSidebar}
+      />
+
       {/* ── Sidebar ─────────────────────────────────────────────────────── */}
-      <aside className="sidebar">
+      <aside className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
         <div className="sidebar-logo">
           <img
             src={logoImg}
             alt="CommunityIQ"
             style={{ height: 36, width: 'auto', objectFit: 'contain' }}
           />
+          {/* Mobile close button */}
+          <button className="sidebar-close-btn" onClick={closeSidebar} aria-label="Close menu">
+            ×
+          </button>
         </div>
 
         {/* Search trigger in sidebar */}
@@ -996,6 +1010,18 @@ export default function App() {
       {/* ── Content ─────────────────────────────────────────────────────── */}
       <section className="content">
         <header className="topbar">
+          {/* Hamburger — only visible on mobile via CSS */}
+          <button
+            className="sidebar-toggle-btn"
+            onClick={() => setSidebarOpen(p => !p)}
+            aria-label="Toggle menu"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <rect y="2" width="16" height="2" rx="1" fill="currentColor"/>
+              <rect y="7" width="16" height="2" rx="1" fill="currentColor"/>
+              <rect y="12" width="16" height="2" rx="1" fill="currentColor"/>
+            </svg>
+          </button>
           <div className="topbar-title">
             <Activity size={15}/>
             {PAGE_TITLE[safePage]}
