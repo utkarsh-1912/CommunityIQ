@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { createPortal } from 'react-dom';
+import logoImg from './assets/logo.png';
 import {
   LayoutDashboard, Cpu, ShieldAlert, Leaf, MessageSquare, Database, Brain,
   Activity, Bell, Settings, RefreshCw, ChevronDown, MapPin,
@@ -842,7 +843,7 @@ export default function App() {
       <aside className="sidebar">
         <div className="sidebar-logo">
           <img
-            src="/src/assets/logo.png"
+            src={logoImg}
             alt="CommunityIQ"
             style={{ height: 36, width: 'auto', objectFit: 'contain' }}
           />

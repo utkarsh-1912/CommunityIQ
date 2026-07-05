@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Brain, Cpu, ShieldAlert, Leaf, MessageSquare, Database, Sparkles, ChevronRight, Activity, Globe } from 'lucide-react';
+import logoImg from '../assets/logo.png';
 
 export default function LandingPage({
   onEnter,
@@ -86,7 +87,7 @@ export default function LandingPage({
           backdropFilter: 'blur(8px)'
         }}>
           <img
-            src="/src/assets/logo.png"
+            src={logoImg}
             alt="CommunityIQ"
             style={{ height: 24, width: 'auto', objectFit: 'contain', borderRadius: '100%' }}
           />
