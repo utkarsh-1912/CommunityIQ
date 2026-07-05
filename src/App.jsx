@@ -858,6 +858,10 @@ export default function App() {
             alt="CommunityIQ"
             style={{ height: 36, width: 'auto', objectFit: 'contain' }}
           />
+          <div>
+            <div className="sidebar-app-name">CommunityIQ</div>
+            <div className="sidebar-app-sub">City OS Platform</div>
+          </div>
           {/* Mobile close button */}
           <button className="sidebar-close-btn" onClick={closeSidebar} aria-label="Close menu">
             ×
