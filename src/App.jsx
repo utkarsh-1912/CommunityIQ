@@ -841,11 +841,11 @@ export default function App() {
       {/* ── Sidebar ─────────────────────────────────────────────────────── */}
       <aside className="sidebar">
         <div className="sidebar-logo">
-          <div className="logo-mark">CQ</div>
-          <div>
-            <div className="sidebar-app-name">CommunityIQ</div>
-            <div className="sidebar-app-sub">City OS Platform</div>
-          </div>
+          <img
+            src="/src/assets/logo.png"
+            alt="CommunityIQ"
+            style={{ height: 36, width: 'auto', objectFit: 'contain' }}
+          />
         </div>
 
         {/* Search trigger in sidebar */}

@@ -85,16 +85,11 @@ export default function LandingPage({
           boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
           backdropFilter: 'blur(8px)'
         }}>
-          <span style={{
-            background: 'linear-gradient(135deg, var(--teal), var(--indigo))',
-            width: '24px', height: '24px',
-            borderRadius: '50%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontWeight: 800,
-            fontSize: '11px'
-          }}>CQ</span>
+          <img
+            src="/src/assets/logo.png"
+            alt="CommunityIQ"
+            style={{ height: 24, width: 'auto', objectFit: 'contain', borderRadius: '100%' }}
+          />
           <span style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: 'var(--fg-dim)' }}>
             City OS Console
           </span>
@@ -228,8 +223,8 @@ export default function LandingPage({
                 }}
                 title={`Onboard detected location: ${userDetectedCity.name}`}
               >
-                <div style={{ fontSize: '16px', marginBottom: '2px' }}>➕</div>
-                <div style={{ fontSize: '10.5px', fontWeight: 700, color: 'var(--teal)' }}>+ {userDetectedCity.name}</div>
+                <div style={{ fontSize: '16px', marginBottom: '2px', color: 'var(--teal)'}}>+</div>
+                <div style={{ fontSize: '10.5px', fontWeight: 700, color: 'var(--teal)' }}>{userDetectedCity.name}</div>
               </button>
             )}
           </div>
